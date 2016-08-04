@@ -19,6 +19,16 @@
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
             </a>
         </td>
+        <td>
+            <a href="/produtos/altera/{{$p->id}}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+            </a>
+        </td>
+        <td>
+            <a href="/produtos/remove/{{$p->id}}">
+                <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+            </a>
+        </td>
     </tr>
     @endforeach
 </table>

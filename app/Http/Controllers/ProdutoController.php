@@ -13,9 +13,8 @@ class ProdutoController extends Controller
         return view('produtos.listagem')->with('produtos', $produtos);
     }
     
-    public function mostra()
+    public function mostra($id)
     {
-        $id = Request::route('id');
         $produtos = Produto::find($id);
         return view('produtos.detalhes')->with('p', $produtos);
     }
@@ -27,13 +26,26 @@ class ProdutoController extends Controller
 
     public function adiciona()
     {
-        $produto = new Produto();
-        $produto->nome = Request::input('nome');
-        $produto->valor = Request::input('valor');
-        $produto->quantidade = Request::input('quantidade');
-        $produto->descricao = Request::input('descricao');
-        $produto->save();
-        //return view('produtos.adicionado')->with('nome', $nome);
+        Produto::create(Request::all());
         return redirect('/produtos')->withInput();
+    }
+
+    public function remove($id)
+    {
+        $produtos = Produto::find($id);
+        $produtos->delete();
+        return redirect()->action('ProdutoController@lista');
+    }
+
+    public function altera($id)
+    {
+        $produtos = Produto::find($id);
+        return view('produtos.alterar')->with('p', $produtos);
+    }
+
+    public function atualiza($id)
+    {
+        Produto::where('id', $id)->update(Request::except('_token'));
+        return redirect()->action('ProdutoController@lista');
     }
 }
