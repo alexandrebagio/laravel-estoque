@@ -1,6 +1,16 @@
 @extends('layout/principal')
 
 @section('conteudo')
+
+@if (count($errors) > 0)
+<div class="alert alert-danger">
+    <ul>
+      @foreach ($errors->all() as $error)
+        <li>{{ $error }}</li>
+      @endforeach
+    </ul>
+</div>
+@endif
 <form action="/produtos/atualiza/{{$p->id}}" method="post">
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
     <div class="form-group">
