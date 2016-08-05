@@ -14,6 +14,7 @@
         <td>{{$p->descricao}}</td>
         <td>{{$p->valor}}</td>
         <td>{{$p->quantidade}}</td>
+        <td>{{$p->tamanho}}</td>
         <td>
             <a href="/produtos/mostra/{{$p->id}}">
                 <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
